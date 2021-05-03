@@ -1,21 +1,19 @@
 package com.tcgplayer.pages;
 
 import com.tcgplayer.utilities.ConfigurationReader;
-import com.tcgplayer.utilities.Driver;
 import com.tcgplayer.utilities.MobileDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-public class FirstPage extends BasePage{
+public class mobileFirstPage extends mobileBasePage {
 
     @FindBy(xpath = "//h1[@class='search-result-count']")
     private WebElement resultCount;
 
-    @FindBy (name = "acInput")
+    @FindBy (xpath = "//input[@id='autocomplete-input']")
     private WebElement search;
 
     @FindBy(xpath = "(//span[@class='checkmark'])[10]")
@@ -24,24 +22,31 @@ public class FirstPage extends BasePage{
     @FindBy(xpath = "(//div[@class='search-result'])[1]")
     private WebElement firstSearchResult;
 
-    @FindBy(id="lowestPriceValue2")
+    @FindBy(xpath = "//span[@id='lowestPriceValue2']")
     private WebElement price;
 
-    @FindBy(id="btnAddToCart_FeaturedSeller")
+    @FindBy(xpath = "//button[@id='btnAddToCart_FeaturedSeller']")
     private WebElement addCartBtn;
 
     @FindBy(xpath = "//div[@class='col-6 text-right']")
     private WebElement numberOfItem;
 
-    public void getUrl(){
-        Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
-    }
+    @FindBy(xpath = "(//div//button)[7]")
+    private WebElement filter;
 
+    @FindBy(xpath = "(//button[@class='button is-normal'])[3]")
+    private WebElement doneBtn;
+
+
+    public void getUrlMobile(){
+        MobileDriver.getDriverMobile().get(ConfigurationReader.getProperty("URL"));
+    }
     public void Search(String word){
         wait.until(ExpectedConditions.visibilityOf(search));
         search.sendKeys(word + Keys.ENTER);
 
     }
+
     public void getResultCount(String result){
         wait.until(ExpectedConditions.visibilityOf(resultCount));
         Assert.assertEquals(resultCount.getText(),result);
@@ -50,7 +55,9 @@ public class FirstPage extends BasePage{
     }
 
     public void filter(){
+        filter.click();
         WoW.click();
+        doneBtn.click();
     }
     public void price(String Price){
         firstSearchResult.click();
@@ -66,5 +73,5 @@ public class FirstPage extends BasePage{
         System.out.println(numberOfItem.getText() + " item in the cart.");
     }
 
-}
 
+}
