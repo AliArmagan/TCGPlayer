@@ -2,8 +2,6 @@ package com.tcgplayer.pages;
 
 import com.tcgplayer.utilities.ConfigurationReader;
 import com.tcgplayer.utilities.Driver;
-import com.tcgplayer.utilities.MobileDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +29,7 @@ public class FirstPage extends BasePage{
     private WebElement addCartBtn;
 
     @FindBy(xpath = "//div[@class='col-6 text-right']")
+
     private WebElement numberOfItem;
 
     public void getUrl(){
@@ -42,6 +41,7 @@ public class FirstPage extends BasePage{
         search.sendKeys(word + Keys.ENTER);
 
     }
+
     public void getResultCount(String result){
         wait.until(ExpectedConditions.visibilityOf(resultCount));
         Assert.assertEquals(resultCount.getText(),result);
@@ -52,6 +52,7 @@ public class FirstPage extends BasePage{
     public void filter(){
         WoW.click();
     }
+
     public void price(String Price){
         firstSearchResult.click();
         wait.until(ExpectedConditions.visibilityOf(price));
@@ -59,6 +60,7 @@ public class FirstPage extends BasePage{
         System.out.println(price.getText() + " first item's price from search.");
 
     }
+
     public void NumberOfItemInCart(String number){
         addCartBtn.click();
         wait.until(ExpectedConditions.visibilityOf(numberOfItem));

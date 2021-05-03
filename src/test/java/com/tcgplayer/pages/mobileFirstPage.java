@@ -38,9 +38,11 @@ public class mobileFirstPage extends mobileBasePage {
     private WebElement doneBtn;
 
 
+
     public void getUrlMobile(){
         MobileDriver.getDriverMobile().get(ConfigurationReader.getProperty("URL"));
     }
+
     public void Search(String word){
         wait.until(ExpectedConditions.visibilityOf(search));
         search.sendKeys(word + Keys.ENTER);
@@ -59,6 +61,7 @@ public class mobileFirstPage extends mobileBasePage {
         WoW.click();
         doneBtn.click();
     }
+
     public void price(String Price){
         firstSearchResult.click();
         wait.until(ExpectedConditions.visibilityOf(price));
@@ -66,6 +69,7 @@ public class mobileFirstPage extends mobileBasePage {
         System.out.println(price.getText() + " first item's price from search.");
 
     }
+
     public void NumberOfItemInCart(String number){
         addCartBtn.click();
         wait.until(ExpectedConditions.visibilityOf(numberOfItem));

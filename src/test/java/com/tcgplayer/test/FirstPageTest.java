@@ -18,6 +18,7 @@ public class FirstPageTest {
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+
     @AfterTest
     public void tearDown() {
         Driver.closeDriver();

@@ -8,8 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Driver {
 
     private Driver(){}
-    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
+    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
     public static WebDriver getDriver(){
 
